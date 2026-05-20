@@ -12,20 +12,26 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(requestLogger);    
-app.use(sanitizeIds);                     
+app.use(requestLogger);
+app.use(sanitizeIds);
+
+// ← Ruta pública de verificación
+app.get('/authors', (req, res) => {
+  res.json([
+    { nombre: 'Tatiana Mayorga', codigo: '0000001' },
+    { nombre: 'Laura',           codigo: '0000002' },
+  ]);
+});
 
 app.use('/api/personajes', personajesRouter);
 app.use('/api/habilidades', habilidadesRouter);
 app.use('/api/usuarios', usuariosRouter);
 
-// Middleware global de errores
 app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).json({ error: 'Error interno del servidor' });
 });
 
-// Verifica conexión y arranca
 (async () => {
   await sequelize.authenticate();
   console.log('Conexión a la base de datos exitosa');
