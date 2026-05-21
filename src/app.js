@@ -18,8 +18,8 @@ app.use(sanitizeIds);
 // ← Ruta pública de verificación
 app.get('/authors', (req, res) => {
   res.json([
-    { nombre: 'Tatiana Mayorga', codigo: '0000001' },
-    { nombre: 'Laura',           codigo: '0000002' },
+    { nombre: 'Tatiana Mayorga', codigo: '0000351799' },
+    { nombre: 'Valentina Garrido',           codigo: '0000002' },
   ]);
 });
 
